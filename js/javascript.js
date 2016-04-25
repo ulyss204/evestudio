@@ -38,4 +38,7 @@ $(document).ready(function(){
 	  $(this).children('.slider_line').css("opacity",1);
 	  $(this).find('.slider_line-mod').css("opacity",1);
 	});
+	$('#hamburger').click(function(){
+		$('body').toggleClass("active");
+	})
 });
