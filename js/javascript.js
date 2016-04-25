@@ -5,11 +5,13 @@ $(document).ready(function(){
 	var currentslide = $('.sect:eq(0)');
 	var currentposition = $('.wrap .sect').index(currentslide);
 
+	
+
 	// On click of a controller link...
 	$('.slider_item').click(function(e){
 		e.preventDefault();
-		$('.slider_line').css("opacity",0.5);
-	    $('.slider_line .slider_line-mod').css("opacity",0);
+		$('.slider_line:eq('+currentposition+')').css("opacity",0.5);
+	    $('.slider_line .slider_line-mod:eq('+currentposition+')').css("opacity",0);
 	    var abc = $(this).attr('data-href');
 		
 		
@@ -34,10 +36,7 @@ $(document).ready(function(){
 	  $(this).children('.slider_line').css("opacity",1);
 	  $(this).find('.slider_line-mod').css("opacity",1);
 	});
-	$( ".slider_item" ).hover(function() {
-	  $(this).children('.slider_line').css("opacity",1);
-	  $(this).find('.slider_line-mod').css("opacity",1);
-	});
+	
 	$('#hamburger').click(function(){
 		$('body').toggleClass("active");
 	})
