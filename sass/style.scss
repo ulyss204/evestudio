@@ -1,7 +1,22 @@
 @import "_normalize";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Kaushan+Script|Roboto);
 @mixin change-size {
-  @media (max-width: 750px) {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin big-size {
+  @media (min-width: 950px) and (max-width: 1199px) {
+    @content;
+  }
+}
+@mixin medium-size {
+  @media (min-width: 560px) and (max-width: 786px) {
+    @content;
+  }
+}
+@mixin small-size {
+  @media (min-width: 320px) and (max-width: 559px) {
     @content;
   }
 }
@@ -11,9 +26,126 @@ body{
 	width: 100%;
 	font-family: 'Montserrat', sans-serif; 
 }
+.wrap{
+	overflow: hidden;
+	position: relative;
+	left:0;
+	top:0;
+	height: 1000px;
+	@include small-size{
+		height: 600px;
+	}
+	& > .sect{
+		position:absolute;
+		width:100%;
+		height:100%;
+		float: left;
+
+	}
+	
+}
+.slider{
+	left: 3%;
+	width: 94%;
+	position: absolute;
+	top: 90%;
+	@include change-size{
+		width: 1200px;
+		left: calc(50% - 600px);
+	}
+	@include big-size{
+		left: 2%;
+		width: 96%;
+	}
+	@include medium-size{
+		left: 4%;
+	}
+
+	.slider_item{
+		display: inline-block;
+		width: 23%;
+		margin-right: 2%;
+		cursor: pointer;
+		@include medium-size{
+			width: 22%;
+		}
+		@include small-size{
+			width: 21%;
+		}
+		&:hover{
+			.slider_line{
+				opacity: 1;
+				.slider_line-mod{
+					opacity: 1;
+				}
+			}
+		}
+
+		&:last-child{
+			margin-right:0; 
+		}
+		&:first-child{
+			.slider_line{
+				opacity: 1;
+				.slider_line-mod{
+					opacity: 1;
+				}
+			}
+		}
+		.slider_line{
+			width: 100%;
+			height: 4px;
+			background-color: #fff;
+			opacity: 0.5;
+
+			
+			.slider_line-mod{
+				width: 25%;
+				height: 4px;
+				background-color: #f38181;
+				opacity: 0;
+				transition:opacity 1s cubic-bezier(0.28, 0.41, 1, 0.76);
+
+
+			}
+
+		}
+		.slider_numb{
+			color: #fff;
+			font-size: 20px;
+			font-weight: 700;
+			@include small-size{
+				font-size: 13px;
+			}
+			span{
+				font-size: 14px;
+				text-transform: uppercase;
+				font-weight: 400;
+				@include small-size{
+				font-size: 9px;
+			}
+			}
+		}
+	}
+
+}
+
 .wrapper{
-	margin: 0 10%;
 	overflow: auto;
+	margin: 0 4%;
+	
+	@include change-size{
+		width: 1200px;
+		margin: 0 auto;
+	}
+	
+}
+.wrapper1{
+	overflow: auto;
+	@include change-size{
+		width: 1200px;
+		margin: 0 auto;
+	}
 }
 .clear{
 	clear: both;
@@ -32,16 +164,28 @@ hr{
 	height: 100%;
 }
 .sect{
-	
+	background: url(../images/eagle.jpg) no-repeat;
 	width: 100%;
-	
+	background-size: cover;
 	background-position: center;
 	overflow: auto;
-
+	&:nth-child(4){
+		background: url(../images/photo.jpg) no-repeat;
+	}
+	&:nth-child(2){
+		background: url(../images/phone.jpg) no-repeat; 
+	}
+	&:nth-child(3){
+		background: url(../images/comp.jpg) no-repeat; 
+	}
 	.logo{
 		float: left;
-		margin-top: 30px;
+		margin-top: 28px;
 		font-weight: 700;
+		@include small-size{
+			float: none;
+			text-align: center;
+		}
 		a{
 			font-size: 20px;
 			color: #fff;
@@ -50,17 +194,37 @@ hr{
 	}
 	nav{
 		float: right;
-		width: 50%;
+		width: 600px;
+		@include medium-size{
+			width: 378px;
+		}
+		@include small-size{
+			display: none;
+		}
 		.nav{
 			padding: 0;
 			margin-top: 35px;
 			li{
 				display: inline-block;
-				margin-right: 7%;
+				margin-right: 50px;
+				@include medium-size{
+					margin-right: 30px;
+				}
+				@include small-size{
+					margin-right: 10px;
+					width: 13%
+				}
 			}
 			.nav_li{
 				text-transform: uppercase;
 				font-weight: 400;
+				&:nth-child(5){
+					@include medium-size{
+					
+					margin: 0;
+					}
+
+				}
 				a{
 					color: #fff;
 					font-size: 12px;
@@ -80,6 +244,11 @@ hr{
 				&:hover{
 					background-position: 0 -15px;
 				}
+				@include medium-size{
+					float: right;
+					margin: 10px;
+					
+				}
 			}
 			.nav_img1{
 				background: url(../images/glass.png) no-repeat;
@@ -89,6 +258,11 @@ hr{
 				cursor: pointer;
 				&:hover{
 					background-position: 0 -16px;
+				}
+				@include medium-size{
+					float: right;
+					margin: 10px;
+					
 				}
 			}
 		}
@@ -100,6 +274,10 @@ hr{
 		margin-top: 180px;
 		font-family: 'Kaushan Script', cursive;
 		margin-bottom: 10px;
+		@include small-size{
+			font-size: 35px;
+			margin-top: 20px;
+		}
 	}
 	.title1{
 		text-align: center;
@@ -108,6 +286,9 @@ hr{
 		text-transform: uppercase;
 		font-weight: 700;
 		margin-top: 0;
+		@include small-size{
+			font-size: 55px;
+		}
 	}
 	
 	button{
@@ -121,65 +302,7 @@ hr{
     	display: block;
     	font-weight: 700;
 	}
-	.slider{
-		width: 100%;
-		margin-top: 155px;
-		.slider_item{
-			display: inline-block;
-			width: 23%;
-			margin-right: 2%;
-			cursor: pointer;
-			&:hover{
-				.slider_line{
-					opacity: 1;
-					.slider_line-mod{
-						opacity: 1;
-					}
-				}
-			}
 
-			&:last-child{
-				margin-right:0; 
-			}
-			&:first-child{
-				.slider_line{
-					opacity: 1;
-					.slider_line-mod{
-						opacity: 1;
-					}
-				}
-			}
-			.slider_line{
-				width: 100%;
-				height: 4px;
-				background-color: #fff;
-				opacity: 0.5;
-
-				
-				.slider_line-mod{
-					width: 25%;
-					height: 4px;
-					background-color: #f38181;
-					opacity: 0;
-					transition:opacity 1s cubic-bezier(0.28, 0.41, 1, 0.76);
-
-
-				}
-
-			}
-			.slider_numb{
-				color: #fff;
-				font-size: 20px;
-				font-weight: 700;
-				span{
-					font-size: 14px;
-					text-transform: uppercase;
-					font-weight: 400;
-				}
-			}
-		}
-
-	}
 }
 .about{
 	text-align: center;
@@ -218,9 +341,19 @@ hr{
 			
 
 			float:left;
-			margin: 1% 0 1% 2%;
+			margin: 0 0 0 2%;
 			height: 249px;
 			cursor: pointer;
+			@include medium-size{
+				width: 100%;
+				margin: 0;
+				margin-bottom: 15px;
+			}
+			@include small-size{
+				width: 100%;
+				margin: 0;
+				margin-bottom: 15px;
+			}
 			&:first-child{
 				margin-left: 0;
 				&:hover{
@@ -233,8 +366,8 @@ hr{
 				}
 			}
 			&:hover{
-				top: -2px;
-				left: -2px;
+				top: -7px;
+				left: -7px;
 				box-shadow:7px 7px 0px #95E1D3;
 				.img_grad{
 					opacity: 0.7;
@@ -284,7 +417,7 @@ hr{
 }
 footer{
 	width: 100%;
-	height: 270px;
+	
 	overflow: auto;
 	background-color: #95e1d3;
 	.numbers{
@@ -292,28 +425,53 @@ footer{
 		width: 100%;
 		margin: 0;
 		.numbers_item{
-			border-left: 1px solid #fff;
-			width: 19.5%;
+			border-left: 1px solid #b5eae0;
+			width: 19.3%;
 			
 			color: #fff;
 			text-align: center;
 			display: inline-block;
 			height: 270px;
-			
+			@include change-size{
+				width: 235px;
+			}
+			@include big-size{
+				width: 19.5%;
+			}
+			@include medium-size{
+				height: 220px;
+				width: 19.1%;
+			}
+			@include small-size{
+				width: 18.6%;
+				height: 155px;
+			}
 			&:last-child{
-				border-right: 1px solid #fff;
+				border-right: 1px solid #b5eae0;
 			} 
 			p{
 				font-size: 55px;
 				margin-bottom: 10px;
 				margin-top: 44%;
 				font-weight: 700;
+				@include medium-size{
+					font-size: 45px;
+				}
+				@include small-size{
+					font-size: 30px;
+				}
 				
 			}
 			span{
 				font-size: 12px;
 				text-transform: uppercase;
 				font-weight: 400;
+				@include medium-size{
+					font-size: 9px; 
+				}
+				@include small-size{
+					font-size: 5px;
+				}
 			}
 		}
 	}
