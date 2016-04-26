@@ -598,6 +598,9 @@ hr {
     @media (min-width: 320px) and (max-width: 559px) {
       .sect .title1 {
         font-size: 55px; } }
+    @media (min-width: 560px) and (max-width: 786px) {
+      .sect .title1 {
+        font-size: 80px; } }
   .sect button {
     color: #fff;
     background-color: transparent;

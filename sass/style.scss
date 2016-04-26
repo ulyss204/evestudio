@@ -300,6 +300,9 @@ hr{
 		@include small-size{
 			font-size: 55px;
 		}
+		@include medium-size{
+			font-size: 80px;
+		}
 	}
 	
 	button{
